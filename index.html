@@ -1,0 +1,78 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Vue.js入門</title>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+</head>
+<body>
+  <h1>This is Vue.js Samples</h1>
+  <div id="app" v-bind:title="message">
+    {{ message }}
+  </div>
+  
+  <div id="tab">
+    <h2>List</h2>
+    <table class="table">
+      <tr v-for="entry in entries">
+        <td>{{ entry.key }}</td>
+        <td>{{ entry.text }}</td>
+      </tr>
+    </table>
+
+  
+  
+  <h2>Odd List filtered by computed</h2>
+  <table class="table">
+    <tr v-for="entry in odd">
+      <td>{{ entry.key }}</td>
+      <td>{{ entry.text }}</td>
+    </tr>
+  </table>
+  
+  <h2>Even List filtered by computed</h2>
+    <table class="table">
+      <tr v-for="entry in even">
+        <td>{{ entry.key }}</td>
+        <td>{{ entry.text }}</td>
+      </tr>
+    </table>
+  </div>
+  
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello, Vue.js!!',
+      },
+    });
+  
+    var app2 = new Vue({
+      el: '#tab',
+      data: {
+        entries : [
+        {text: 'hoge', key: 1},
+        {text: 'fuga', key: 2},
+        {text: 'foo', key: 3},
+        {text: 'bar', key: 4}
+        ]
+      },
+      computed: {
+        odd: function () {
+          return this.entries.filter(x => x.key %2 == 0)
+        },
+        even: function () {
+          return this.entries.filter(x => x.key %2 == 1)
+        }
+      }
+    })
+  </script>
+</body>
+</html>
+
