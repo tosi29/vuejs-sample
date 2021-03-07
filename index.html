@@ -30,8 +30,6 @@
         <td>{{ entry.text }}</td>
       </tr>
     </table>
-
-  
   
   <h2>Odd List filtered by computed</h2>
   <table class="table">
@@ -51,6 +49,7 @@
   </div>
   
   <script>
+
     var app = new Vue({
       el: '#app',
       data: {
@@ -88,6 +87,31 @@
       }
     })
   </script>
+
+<h2>TODO items</h2>
+
+<div id="app3">
+  <ol>
+    <todo-item v-for="todo in todolist" v-bind:todo="todo"></todo-item>
+  </ol>
+</div>
+
+<script>
+    Vue.component('todo-item', {
+      props: ['todo'],
+      template: '<li>{{ todo.todoname }}</li>'
+    })
+
+    var app3 = new Vue({
+      el: '#app3',
+      data: {
+        todolist: [
+          { id: 0, todoname: 'First todo'},
+          { id: 1, todoname: 'Private todo'},
+        ]
+      }
+    })
+</script>
 </body>
 </html>
 
